@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 
 $clsid = '{B6F3A1C2-7D4E-4A9B-9C31-5E7A2D8F1B60}'
 $iid   = '{00021500-0000-0000-C000-000000000046}'

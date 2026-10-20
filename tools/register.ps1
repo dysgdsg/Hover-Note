@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 
 $root  = Split-Path -Parent $PSScriptRoot
 $dll   = Join-Path $root 'bin\HoverNote.dll'

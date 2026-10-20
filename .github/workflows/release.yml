@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - name: 取回代码
+        uses: actions/checkout@v4
+
+      - name: 编译（与本地同一份脚本）
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1
+
+      - name: 生成校验值
+        shell: powershell
+        run: |
+          $lines = Get-ChildItem dist\*.exe | ForEach-Object {
+            $h = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower()
+            "$h  $($_.Name)"
+          }
+          $lines | Set-Content -Path dist\SHA256SUMS.txt -Encoding ascii
+          Get-Content dist\SHA256SUMS.txt
+
+      - name: 发布 Release
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" dist\HoverNote-Setup.exe dist\Uninstall.exe dist\SHA256SUMS.txt --title "HoverNote ${{ github.ref_name }}" --notes-file .github\release-notes.md

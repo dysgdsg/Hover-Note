@@ -15,17 +15,32 @@ jobs:
       - name: 取回代码
         uses: actions/checkout@v4
 
-      - name: 编译（与本地同一份脚本）
+      - name: 编译
         shell: powershell
         run: |
-          $out = & powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1 2>&1
-          $code = $LASTEXITCODE
-          $out | ForEach-Object { Write-Host $_ }
-          if ($code -ne 0) {
-            $tail = @($out) | Select-Object -Last 12
-            foreach ($l in $tail) { Write-Host ('::error::' + (($l -replace "`r", '') -replace '%', '%25') ) }
-            exit 1
-          }
+          $p = Start-Process -FilePath powershell -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','tools\build.ps1' -NoNewWindow -Wait -PassThru -RedirectStandardOutput build.out -RedirectStandardError build.err
+          if (Test-Path build.out) { Get-Content build.out | Write-Host }
+          if (Test-Path build.err) { Get-Content build.err | Write-Host }
+          Write-Host ('exit=' + $p.ExitCode)
+          if ($p.ExitCode -ne 0) { exit 1 }
+
+      - name: 失败时把日志推到 ci-log 分支
+        if: failure()
+        shell: powershell
+        run: |
+          git config user.name hovernote-ci
+          git config user.email ci@users.noreply.github.com
+          git checkout -B ci-log
+          $log = @()
+          $log += ('PSVersion: ' + $PSVersionTable.PSVersion.ToString())
+          $log += ('csc64 exists: ' + (Test-Path 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe'))
+          $log += ('csc32 exists: ' + (Test-Path 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe'))
+          if (Test-Path build.out) { $log += '--- stdout ---'; $log += Get-Content build.out }
+          if (Test-Path build.err) { $log += '--- stderr ---'; $log += Get-Content build.err }
+          $log | Set-Content ci-last.log -Encoding utf8
+          git add -f ci-last.log
+          git commit -m 'ci log'
+          git push -f origin ci-log
 
       - name: 生成校验值
         shell: powershell

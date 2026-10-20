@@ -24,7 +24,7 @@ Windows 资源管理器里，鼠标停在文件或文件夹上时，系统会弹
 
 ## 快速开始
 
-1. 到 [Releases](../../releases) 下载 `HoverNote-Setup.exe`
+1. 到 [Releases](https://github.com/dysgdsg/Hover-Note/releases) 下载 `HoverNote-Setup.exe`
 2. 双击运行（**不需要管理员权限**，也不写系统目录）
 3. 打开任意文件夹，把鼠标停在文件上等一两秒
 

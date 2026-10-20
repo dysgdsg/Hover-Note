@@ -1,0 +1,21 @@
+# 编译产物
+/bin/
+/obj/
+/dist/
+
+# 安装目录里被占用时留下的副本
+*.locked-*
+*.bak-before-*
+
+# 本机专属的规则（由使用者自己的 AI 生成，不该进仓库）
+rules/rules.local.json
+HoverNote-体检报告.txt
+
+# 调试日志
+hovernote-debug.txt
+
+# 编辑器 / 系统杂项
+.vs/
+*.user
+Thumbs.db
+desktop.ini

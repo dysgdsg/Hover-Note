@@ -1,0 +1,567 @@
+{
+  "version": 1,
+  "generated": "2026-10-20",
+  "rules": [
+    {
+      "id": "SYS-WINDOWS",
+      "pattern": "C:\\Windows",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "Windows 系统自己的文件夹，删了电脑就起不来了。"
+    },
+    {
+      "id": "SYS-SYSTEM32",
+      "pattern": "C:\\Windows\\System32",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统的核心文件都在这里，动了电脑会坏。"
+    },
+    {
+      "id": "SYS-SYSWOW64",
+      "pattern": "C:\\Windows\\SysWOW64",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "32 位程序的系统文件，删了系统会坏。"
+    },
+    {
+      "id": "SYS-WINSXS",
+      "pattern": "C:\\Windows\\WinSxS",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统组件的备份仓库，删了系统更新和修复都会坏。"
+    },
+    {
+      "id": "SYS-INSTALLER",
+      "pattern": "C:\\Windows\\Installer",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "软件的安装备份，删了以后没法卸载或修复软件。"
+    },
+    {
+      "id": "SYS-CONFIG",
+      "pattern": "C:\\Windows\\System32\\config",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统的注册表数据库，删了电脑开不了机。"
+    },
+    {
+      "id": "SYS-DRIVERS",
+      "pattern": "C:\\Windows\\System32\\drivers",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统驱动文件，删了鼠标键盘网卡可能失灵。"
+    },
+    {
+      "id": "SYS-FONTS",
+      "pattern": "C:\\Windows\\Fonts",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统字体，删了文字会显示成方块。"
+    },
+    {
+      "id": "SYS-PF",
+      "pattern": "C:\\Program Files",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "安装的软件都在这里，删了软件就用不了。"
+    },
+    {
+      "id": "SYS-PFX86",
+      "pattern": "C:\\Program Files (x86)",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "32 位软件装在这里，删了软件就用不了。"
+    },
+    {
+      "id": "SYS-PROGRAMDATA",
+      "pattern": "C:\\ProgramData",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "所有用户共用的软件数据，删了软件会出问题。"
+    },
+    {
+      "id": "SYS-VSS",
+      "pattern": "C:\\System Volume Information",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统还原点的存放处，删了就没法还原系统。"
+    },
+    {
+      "id": "SYS-RECOVERY",
+      "pattern": "C:\\Recovery",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统修复用的文件，删了出问题时没法恢复。"
+    },
+    {
+      "id": "SYS-PAGEFILE",
+      "pattern": "C:\\pagefile.sys",
+      "kind": "exact",
+      "level": "danger",
+      "applies": "files",
+      "explain": "系统运行用的临时内存空间，别手动删。"
+    },
+    {
+      "id": "SYS-HIBERFIL",
+      "pattern": "C:\\hiberfil.sys",
+      "kind": "exact",
+      "level": "danger",
+      "applies": "files",
+      "explain": "休眠功能用的文件，删了就没法休眠。"
+    },
+    {
+      "id": "SYS-SWAPFILE",
+      "pattern": "C:\\swapfile.sys",
+      "kind": "exact",
+      "level": "danger",
+      "applies": "files",
+      "explain": "系统交换文件，别手动删。"
+    },
+    {
+      "id": "SYS-BOOTMGR",
+      "pattern": "C:\\bootmgr",
+      "kind": "exact",
+      "level": "danger",
+      "applies": "files",
+      "explain": "开机引导文件，删了就开不了机。"
+    },
+    {
+      "id": "SYS-BOOT",
+      "pattern": "C:\\Boot",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "开机引导用的文件，删了就开不了机。"
+    },
+    {
+      "id": "SYS-WINREAGENT",
+      "pattern": "C:\\$WinREAgent",
+      "kind": "prefix",
+      "level": "danger",
+      "explain": "系统恢复环境的临时文件，删了可能影响系统修复。"
+    },
+    {
+      "id": "USR-PROFILE",
+      "pattern": "C:\\Users\\*",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你的个人文件夹，存着自己的设置和文件。"
+    },
+    {
+      "id": "USR-DESKTOP",
+      "pattern": "C:\\Users\\*\\Desktop",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "桌面，放在上面的都是你自己放的。"
+    },
+    {
+      "id": "USR-DOCUMENTS",
+      "pattern": "C:\\Users\\*\\Documents",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你的文档，删了就找不回来了。"
+    },
+    {
+      "id": "USR-DOWNLOADS",
+      "pattern": "C:\\Users\\*\\Downloads",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你下载的东西都堆在这，里面常有舍不得删的。"
+    },
+    {
+      "id": "USR-PICTURES",
+      "pattern": "C:\\Users\\*\\Pictures",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你的图片，删了就没了。"
+    },
+    {
+      "id": "USR-VIDEOS",
+      "pattern": "C:\\Users\\*\\Videos",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你的视频，删了就没了。"
+    },
+    {
+      "id": "USR-MUSIC",
+      "pattern": "C:\\Users\\*\\Music",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "你的音乐，删了就没了。"
+    },
+    {
+      "id": "USR-APPDATA",
+      "pattern": "C:\\Users\\*\\AppData\\Roaming",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "软件的设置和账号数据，删了软件要重新登录。"
+    },
+    {
+      "id": "USR-LOCALLOW",
+      "pattern": "C:\\Users\\*\\AppData\\LocalLow",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "部分软件的数据目录，删了软件可能出问题。"
+    },
+    {
+      "id": "USR-ONEDRIVE",
+      "pattern": "C:\\Users\\*\\OneDrive",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "OneDrive 同步的文件，删了云端也会跟着删。"
+    },
+    {
+      "id": "USR-PUBLIC",
+      "pattern": "C:\\Users\\Public",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "公共文件夹，所有用户都能看到。"
+    },
+    {
+      "id": "SYS-RECYCLEBIN",
+      "pattern": "C:\\$Recycle.Bin",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "回收站，里面的东西是你删掉的，清空就真没了。"
+    },
+    {
+      "id": "SYS-WINDOWSOLD",
+      "pattern": "*:\\Windows.old",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "旧系统的备份，删了就没法退回旧系统。"
+    },
+    {
+      "id": "SYS-PREFETCH",
+      "pattern": "C:\\Windows\\Prefetch",
+      "kind": "prefix",
+      "level": "caution",
+      "explain": "程序启动的加速记录，删了开机慢一点，会自己重建。"
+    },
+    {
+      "id": "SYS-WUSDIST",
+      "pattern": "C:\\Windows\\SoftwareDistribution",
+      "kind": "prefix",
+      "level": "caution",
+      "explain": "系统更新的下载和记录，删了可能影响更新。"
+    },
+    {
+      "id": "SYS-MINIDUMP",
+      "pattern": "C:\\Windows\\Minidump",
+      "kind": "prefix",
+      "level": "caution",
+      "explain": "系统崩溃时的记录，找技术支持时有用。"
+    },
+    {
+      "id": "APP-WECHAT",
+      "pattern": "C:\\Users\\*\\Documents\\WeChat Files",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "微信的聊天记录和收到的文件，删了找不回来。"
+    },
+    {
+      "id": "APP-TENCENT",
+      "pattern": "C:\\Users\\*\\Documents\\Tencent Files",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "QQ 的聊天记录和收到的文件，删了找不回来。"
+    },
+    {
+      "id": "DOC-OFFICE",
+      "pattern": ".docx|.doc|.xlsx|.xls|.pptx|.ppt|.pdf",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "文档文件，删了就没了。"
+    },
+    {
+      "id": "MEDIA",
+      "pattern": ".jpg|.jpeg|.png|.gif|.bmp|.mp4|.mov|.mkv|.avi|.webp",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "图片或视频，删了就没了。"
+    },
+    {
+      "id": "ARCHIVE",
+      "pattern": ".zip|.rar|.7z|.tar|.gz",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "压缩包，里面装着别的东西，先解压看看是什么。"
+    },
+    {
+      "id": "ISO",
+      "pattern": ".iso|.img",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "光盘镜像，一般装系统或装软件时才用。"
+    },
+    {
+      "id": "INSTALLER",
+      "pattern": ".exe|.msi",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "能直接运行的程序或安装包，删错就很难找回来。"
+    },
+    {
+      "id": "PSD",
+      "pattern": ".psd|.ai|.sketch|.xd",
+      "kind": "suffix",
+      "level": "caution",
+      "applies": "files",
+      "explain": "设计稿的源文件，删了改不了图了。"
+    },
+    {
+      "id": "WIN-TEMP",
+      "pattern": "C:\\Windows\\Temp",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "系统的临时文件夹，里面的东西基本没用，删了会重建。"
+    },
+    {
+      "id": "USR-TEMP",
+      "pattern": "C:\\Users\\*\\AppData\\Local\\Temp",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "临时文件，程序关掉后基本没用了，删了会重建。"
+    },
+    {
+      "id": "TEMP-ANY",
+      "pattern": "*\\Temp",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "临时文件夹，里面的东西基本没用，删了会重建。"
+    },
+    {
+      "id": "TMP-ANY",
+      "pattern": "*:\\tmp",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "临时文件夹，里面的东西基本没用，删了会重建。"
+    },
+    {
+      "id": "INETCACHE",
+      "pattern": "*\\INetCache",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "上网时的缓存，删了网页会重新加载。"
+    },
+    {
+      "id": "THUMBCACHE",
+      "pattern": "C:\\Users\\*\\AppData\\Local\\Microsoft\\Windows\\Explorer\\thumbcache_*.db",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "图片的小预览图，删了会重新生成。"
+    },
+    {
+      "id": "CRASHDUMPS",
+      "pattern": "*\\CrashDumps",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "程序崩溃时留下的报告，删了没影响。"
+    },
+    {
+      "id": "WER",
+      "pattern": "C:\\ProgramData\\Microsoft\\Windows\\WER",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "程序报错的记录，删了没影响。"
+    },
+    {
+      "id": "CHROME-CACHE",
+      "pattern": "C:\\Users\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Cache",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "Chrome 的网页缓存，删了会自动重建。"
+    },
+    {
+      "id": "EDGE-CACHE",
+      "pattern": "C:\\Users\\*\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Cache",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "Edge 的网页缓存，删了会自动重建。"
+    },
+    {
+      "id": "FIREFOX-CACHE",
+      "pattern": "C:\\Users\\*\\AppData\\Local\\Mozilla\\Firefox\\Profiles\\*\\cache2",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "Firefox 的网页缓存，删了会自动重建。"
+    },
+    {
+      "id": "WU-DOWNLOAD",
+      "pattern": "*\\SoftwareDistribution\\Download",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "系统更新的下载残留，装完就没用了。"
+    },
+    {
+      "id": "WIN-LOGS",
+      "pattern": "C:\\Windows\\Logs",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "系统日志，删了不影响使用，只是排查问题时少点线索。"
+    },
+    {
+      "id": "PERFLOGS",
+      "pattern": "C:\\PerfLogs",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "系统性能测试的日志，删了没影响。"
+    },
+    {
+      "id": "GPU-INTEL",
+      "pattern": "C:\\Intel",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "Intel 驱动安装时解压的临时文件，删了没事。"
+    },
+    {
+      "id": "GPU-AMD",
+      "pattern": "C:\\AMD",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "AMD 驱动安装时解压的临时文件，删了没事。"
+    },
+    {
+      "id": "GPU-NVIDIA",
+      "pattern": "C:\\NVIDIA",
+      "kind": "prefix",
+      "level": "safe",
+      "explain": "NVIDIA 驱动安装时解压的临时文件，删了没事。"
+    },
+    {
+      "id": "EXT-TMP",
+      "pattern": ".tmp|.temp|.log|.dmp|.crdownload|.part",
+      "kind": "suffix",
+      "level": "safe",
+      "applies": "files",
+      "explain": "临时文件或日志，删了没有影响。"
+    },
+    {
+      "id": "UNK-DLL",
+      "pattern": ".dll|.sys|.ocx|.cpl",
+      "kind": "suffix",
+      "level": "unknown",
+      "applies": "files",
+      "explain": "系统或软件的组件，不确定谁在用，别乱删。"
+    },
+    {
+      "id": "UNK-DB",
+      "pattern": ".dat|.db|.sqlite|.sqlite3|.mdb",
+      "kind": "suffix",
+      "level": "unknown",
+      "applies": "files",
+      "explain": "可能是某个软件的数据，也可能是你的资料。"
+    },
+    {
+      "id": "UNK-CFG",
+      "pattern": ".ini|.cfg|.conf|.config",
+      "kind": "suffix",
+      "level": "unknown",
+      "applies": "files",
+      "explain": "软件的配置文件，删了软件可能要重新设置。"
+    },
+    {
+      "id": "UNK-BAK",
+      "pattern": ".bak|.old|.orig|.backup",
+      "kind": "suffix",
+      "level": "unknown",
+      "applies": "files",
+      "explain": "看着像备份或旧版本，确认没用了再删。"
+    },
+    {
+      "id": "SYS-RECYCLEBIN-ANY",
+      "pattern": "*:\\$Recycle.Bin",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "回收站：你删掉的东西先放在这儿，清空才算真没了。"
+    },
+    {
+      "id": "SYS-VSS-ANY",
+      "pattern": "*:\\System Volume Information",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "系统还原点和索引存在这里，删了就没法靠它恢复系统了。"
+    },
+    {
+      "id": "SYS-SYSRESET",
+      "pattern": "*:\\$SysReset",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "系统重置留下的记录，平时用不到。"
+    },
+    {
+      "id": "SYS-WS-TEMP",
+      "pattern": "*:\\$Windows.~WS",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "升级 Windows 时留下的临时文件，占地方，但别自己删。"
+    },
+    {
+      "id": "SYS-WINDOWSAPPS-ANY",
+      "pattern": "*:\\WindowsApps",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "微软商店装的软件在这儿，删了那些软件会坏。"
+    },
+    {
+      "id": "SYS-DELIVERYOPT",
+      "pattern": "*:\\DeliveryOptimization",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "Windows 更新用的下载缓存，删了会自己重建。"
+    },
+    {
+      "id": "SYS-WUDLCACHE",
+      "pattern": "*:\\WUDownloadCache",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "系统升级下载的缓存，删了会自己重建。"
+    },
+    {
+      "id": "SYS-WPSYSTEM",
+      "pattern": "*:\\WpSystem",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "商店应用的数据，删了那些应用会出问题。"
+    },
+    {
+      "id": "SYS-INETPUB",
+      "pattern": "*:\\inetpub",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "IIS 网站的默认目录，你如果不做网站就用不到。"
+    },
+    {
+      "id": "SYS-PERFLOGS-ANY",
+      "pattern": "*:\\PerfLogs",
+      "kind": "glob",
+      "level": "safe",
+      "explain": "性能日志，删了不影响使用。"
+    },
+    {
+      "id": "DOC-TEXT",
+      "pattern": ".txt|.md|.rtf|.csv",
+      "kind": "suffix",
+      "level": "caution",
+      "explain": "文字文档，里面可能是你自己写的东西。"
+    },
+    {
+      "id": "APP-PF-ANY",
+      "pattern": "*:\\Program Files",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "装软件的默认位置，删了里面那些软件就用不了。"
+    },
+    {
+      "id": "APP-PFX86-ANY",
+      "pattern": "*:\\Program Files (x86)",
+      "kind": "glob",
+      "level": "caution",
+      "explain": "装软件的默认位置，删了里面那些软件就用不了。"
+    }
+  ]
+}
